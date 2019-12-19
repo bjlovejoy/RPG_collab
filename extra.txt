@@ -1,0 +1,14 @@
+    def setNorth(self, material=None, description=None):
+        self.n = Wall(material, description)
+    def setSouth(self, material=None, description=None):
+        self.s = Wall(material, description)
+    def setEast(self, material=None, description=None):
+        self.e = Wall(material, description)
+    def setWest(self, material=None, description=None):
+        self.w = Wall(material, description)
+    def setCeiling(self, material=None, description=None):
+        self.c = Wall(material, description)
+    def setFloor(self, material=None, description=None):
+        self.f = Wall(material, description)
+        
+        

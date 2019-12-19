@@ -20,7 +20,7 @@ class Wall:
     self.description = description
 
 class Room:
-    def __init__(self, Quadrant):
+    def __init__(self, Quadrant, description):
         #q0 is reserved for player space
         self.q0 = Quadrant[0]
         self.q1 = Quadrant[1]
@@ -31,17 +31,9 @@ class Room:
         self.q6 = Quadrant[6]   #potential door
         self.q7 = Quadrant[7]
         self.q8 = Quadrant[8]   #potential door
-    def setNorth(self, material=None, description=None):
-        self.n = Wall(material, description)
-    def setSouth(self, material=None, description=None):
-        self.s = Wall(material, description)
-    def setEast(self, material=None, description=None):
-        self.e = Wall(material, description)
-    def setWest(self, material=None, description=None):
-        self.w = Wall(material, description)
-    def setCeiling(self, material=None, description=None):
-        self.c = Wall(material, description)
-    def setFloor(self, material=None, description=None):
-        self.f = Wall(material, description)
+        self.description = description
+        
+
+
 
 
