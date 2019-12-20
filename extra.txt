@@ -12,3 +12,9 @@
         self.f = Wall(material, description)
         
         
+"""
+class Wall:
+    def __init__(self, material, description):
+        self.material = material
+        self.description = description
+"""
