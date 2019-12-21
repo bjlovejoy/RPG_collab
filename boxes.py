@@ -1,7 +1,9 @@
 #includes cabinets, chests, 
 class Box:
-    def __init__(self, name, locked, capacity):
-        self.name = name
+    #names, items (lists); locked (bool); capacity (int)
+    def __init__(self, names, items, locked, capacity):
+        self.names = names
+        self.items = items
         self.locked = locked
         self.capacity = capacity
     #consider making this the open command

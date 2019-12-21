@@ -10,8 +10,8 @@ from boxes import *
 #default material is wood
 class Door:
     def __init__(self, locked, style="door", material="wood"):
-        self.style = style
         self.locked = locked
+        self.style = style
         self.material = material
 
 class Room:
@@ -26,36 +26,53 @@ class Room:
         self.q7 = Quadrant[7]
         self.description = description
         self.cutscene = cutscene   #if cutscene != None, play
+        self.new = True   #This is a new room that hasn't been entered yet
     def saveState():
         print("All rooms states saved to text document")
-        
+    def restoreState():
+        print("The current state of the room from\
+            last session has been restored")
+
+
+def location(direction, loc):
+    if direction == "n" and loc < 90:
+        loc += 10
+    elif direction == "s" and loc > 9:
+        loc -= 10
+    elif direction == "e" and loc % 10 != 9:
+        loc += 1
+    elif direction == "w" and loc % 10 != 0:
+        loc -= 1
+
 #******************************************************************
 
 
 bedroom = Room(0, 
                [None,
-                Door(),
+                Door(True),
                 None,
-                Box(),
-                Door(),
+                Box(["jewelry box", "jewelrybox", "jewelry"],
+                    [Item()],
+                    False, 3),
+                Door(True),
                 Item("Bed"),
                 None,
                 None],
-               "You are in a comfy bedroom.  The wooden floor is polished
-               clean, as is most of the room.  There is a small jewlery
-               box at the foot of a soft, fluffy bed and two doors.  One to
+               "You are in a comfy bedroom.  The wooden floor is polished\
+               clean, as is most of the room.  There is a small jewelry\
+               box at the foot of a soft, fluffy bed and two doors.  One to\
                the north and one to the east.\n",
-               "You begin to stir as you awaken from a deep sleep.  You feel
-               a cold sweat on your forehead and your vision is hazy.  As you
-               sit up, your vision clears and you start to make sense of your surroundings.\n")
+               "You begin to stir as you awaken from a deep sleep.  You feel\
+               a cold sweat on your forehead and your vision is hazy.  As you\
+               sit up, your vision clears and you start to make sense of your\ surroundings.\n")
 
-kitchen = 
+#kitchen = 
 
-foyer = 
+#foyer = 
 
-closet = 
+#closet = 
 
 
-allRooms = [room1, room2, room3, room4]
+allRooms = [bedroom]
 
 
