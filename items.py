@@ -1,3 +1,5 @@
+from colorama import Fore, Style
+
 
 #make sure description starts with lowercase letter unless intended capital
 class Item:
@@ -9,8 +11,8 @@ class Item:
         
 
 class Weapon:
-    def __init__(self, name, style, description):
-        self.name = name
+    def __init__(self, names, style, description):
+        self.names = names
         self.style = style
         self.description = description
     def look(self):

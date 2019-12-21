@@ -5,6 +5,7 @@ from colorama import Fore, Style
 
 from random import randint
 from rooms import *
+from boxes import *
 from commands import *
 from player import *
 from items import *
@@ -13,6 +14,7 @@ from items import *
 loc = 3  #starting location
 playing = True
 
+#consider making function for this
 """
 validSelection = False
 menuSelect = input("\nPlease Select from Below:\n\n\
@@ -54,35 +56,20 @@ elif menuSelect == 4:  #Quit
 
 #Testing area (make functions handle \n, not in literals)
 allRooms[0].q5.look()
-print("\n")
+print("")
 allRooms[0].q3.list_items()
-
-
+allRooms[0].q3.remove_all()
+print("")
+allRooms[0].q3.list_items()
 
 
 while(playing):
     cmd = (input(Fore.YELLOW + ">>> ").lower()).split()
     print(Style.RESET_ALL, end="", flush=True)
     
-    use = "Nonsense"
-    for i in allCmds:
-        for j in (i.keywords):
-            if cmd[0] == j:
-                use = i.name
+    parseCmd(cmd)
     
-    if use == "look":
-        print("1")
-    elif use == "go":
-        if len(cmd) < 2:
-            #consider turning this into a function (pass text and color)
-            print(Fore.RED + "Specify direction")
-            print(Style.RESET_ALL, end="", flush=True)
-        else:
-            location(cmd[1], loc)
-    elif use == "quit":
-        playing = False
-    else:
-        print("I don't know what you're saying.")
+
 
 print("\nUntil next time adventurer...\n\n\n")
 
