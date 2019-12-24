@@ -2,8 +2,12 @@ from colorama import Fore, Style
 from boxes import *
 from items import *
 
-#TODO: style is door, trapdoor, ladder, stairs, transport 
+#TODO: style is door, trapdoor, ladder, stairs, transport (97 -> 197 up)
+#      (for now, implement ladders and stairs as unlocked doors,
+#       then make new class for verticle pathways)
+#keyID must be sting to use for keys, riddles, etc. (None if no lock)
 #description (about the door)
+#locked is set to False as default
 #cutscene (when opening door first time; save passing through for room)
 class Door:
     def __init__(self, keyID, description, locked=False, cutscene="Default"):
@@ -25,8 +29,8 @@ class Door:
     def unlock(self, key):  #requires the key ID to test door
         self.locked = False
         if key == keyID:
-            if self.cutscene == "Default":
-                num = randint(5)
+            if self.cutscene == "Default":  #FIXME put text in a list and access list number (randint(0,4))
+                num = randint(1, 5)
                 if num == 1:
                     print("You hear the lock faintly click and the door eases open.")
                 elif num == 2:
@@ -40,7 +44,7 @@ class Door:
             else:
                 print(self.cutscene)
         else:
-            print("The key didn't work.  The door is still locked.")  #TODO add more responses
+            print("The key didn't work.  The door is still locked.")  #TODO add more responses and colors
 
 #************************************************************************************
 
@@ -57,6 +61,8 @@ class Room:
         self.q6 = Quadrant[6]   #potential door
         self.q7 = Quadrant[7]
         
+        self.quads = Quadrant
+        
         self.description = description
         self.cutscene = cutscene   #if cutscene != None, play
         self.firstEnter = True      #This is a new room that hasn't been entered yet
@@ -64,10 +70,25 @@ class Room:
     def playCutscene(self):
         if self.firstEnter and self.cutscene != None:
             print(self.cutscene)
+    
     def look(self):
         print(self.description)
+    
+    #search quadrants for items/doors, NPCs, boxes, etc.
+    def findItem(self, item):
+        multiple = 0
+        for i in self.quads:
+            if i != None:
+                
+#STILL NEEDS WORK ^^^^^^^
+
+   
+    
+    
     def saveState(self):
-        print("All rooms states saved to text document")
+        print(Fore.CYAN + "All rooms states saved to text document")
+        print(Style.RESET_ALL, end="", flush=True)
+    
     def restoreState(self):
         print(Fore.CYAN + "The current state of the room from last "\
               "session has been restored.")

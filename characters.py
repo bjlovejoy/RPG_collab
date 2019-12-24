@@ -13,7 +13,7 @@ def createPlayer():
 #see notebook for additional player attributes
 class Player:
     inventory = Box()
-    roomLoc = 
+    roomLoc = -1  #Here, -1 (center tile), -2 (inventory) and 0-7 are quads
     
     def __init__(self, name):
         self.name = name
@@ -39,13 +39,13 @@ class NPC:
 def location(direction, loc, allRooms):
     able = True
     
-    if direction == "n" and loc > 9:
+    if direction == "n" and loc % 100 > 9:
         if allRooms[loc] != None:
             loc -= 10
         else:
             able = False
             
-    elif direction == "s" and loc < 90:
+    elif direction == "s" and loc % 100 < 90:
         if allRooms[loc] != None:
             loc += 10
         else:
@@ -64,4 +64,7 @@ def location(direction, loc, allRooms):
             able = False
     
     if able == False:
-        print("You can't go that way")  #TODO add more text
+        print(Fore.RED + "You can't go that way")  #TODO add more text
+        print(Style.RESET_ALL, end="", flush=True)
+
+

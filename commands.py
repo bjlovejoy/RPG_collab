@@ -10,13 +10,13 @@ quit = Command("quit", ["quit", "exit", "end", "q"])
 
 look = Command("look", ["look", "see", "study", "view", "check"])
 go = Command("go", ["go", "walk", "run", "travel", "head", "leave"])
-opens = Command("open", ["open", "enter"])
+opens = Command("open", ["open", "enter", "unlock"])
 close = Command("close", ["close"])
 
 take = Command("take", ["take", "grab"])
 put = Command("put", ["put", "place"])
 
-use = Command("use", ["use", "interact"])  #need to equip before using if equipable
+use = Command("use", ["use", "interact", "try"])  #need to equip before using if equipable
 equip = Command("equip", ["equip"])
 
 eat = Command("eat", ["eat", "drink"])
@@ -46,12 +46,14 @@ def parseCmd(cmd, room, player, loc):
         QUIT()
         return False
     else:
-        print("I don't know what you're saying.")
+        print(Fore.RED + "I don't know what you're saying.")
+        print(Style.RESET_ALL, end="", flush=True)
     return True
 
 
 
 def QUIT():
+    pass
     
 
 
@@ -62,18 +64,51 @@ def QUIT():
 def LOOK(cmd, room, player):
     if len(cmd) == 1:
         room.look()
+        
     elif cmd[1] == "around" or cmd[1] == "room":
         room.look()
+        
     elif cmd[1] == "at" ann len(cmd) > 2:
         for i in range(2):
             del cmd[0]
         a = " "
         item = a.join(cmd)
         
+        center = -1
+        inventory = -2
+        
+        if player.roomLoc == center:  #need to find what user is talking about
+                                      #(chest, door, item, NPC)
+            pass                      #does not include inside chests
+        elif player.roomLoc == inventory:  #search through inventory
+            pass                           #(includes equipped gear)
+        else:
+            pass
+        
+
+
+#may need to add look statement for chests
+
+"""
+need to "open" and "close" chests, inventory
+
+look at:    door
+            chest
+            inventory
+            room
+            item in room
+            item in chest
+            item in inventory
+            NPCs
+            weapon
+            equipped items/armor/weapons
+"""
 
 
 
-def GO(cmd, room, player):
+
+
+def GO(cmd, room, player, allRooms):
     direction = cmd[1][0]  #sends first character of direction
     
     if len(cmd) < 2:
@@ -82,10 +117,11 @@ def GO(cmd, room, player):
             print(Style.RESET_ALL, end="", flush=True)
             
     elif direction == "n" or direction == "s" or direction == "e" or direction == "w":
-        location(direction, loc)
+        location(direction, loc, allRooms)
     
     else:
-        print("I'm not sure where that's at.")  #TODO add more
+        print(Fore.RED + "I'm not sure where that's at.")  #TODO add more
+        print(Style.RESET_ALL, end="", flush=True)
 
 
 
