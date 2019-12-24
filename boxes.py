@@ -41,11 +41,11 @@ class Box:
                     print((self.items[i]).description, end=", ")
 
 
-    #item is a list of strings, can do multiple
+    #items is a list of strings, can do multiple
     #need to handle empty boxes and if command called when not at box
-    def remove_item(self, item):
+    def remove_item(self, items):
         copy_item = []
-        for i in item:
+        for i in items:
             exist = False
             itr = 0
             for j in self.items:
@@ -73,9 +73,9 @@ class Box:
         else:
             return None  #in main, if not None, give to player
     
-    #item is a list, can do multiple
+    #items is a list, can do multiple
     #print one item at a time as added
-    def add_item(self, item):
+    def add_item(self, items):
         (self.items).append(item)
 
 

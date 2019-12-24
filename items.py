@@ -20,3 +20,5 @@ class Weapon:
 
 
 #make interactable item, such as guess riddle answer
+
+#make key class or key subclass (consider part of Door)

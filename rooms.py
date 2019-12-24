@@ -1,23 +1,53 @@
-
-#can use local, nonlocal and global to reference variables
-#local - only within function
-#nonlocal - outside of function
-#global - completely different object outside of function
-
 from colorama import Fore, Style
 from boxes import *
 from items import *
 
-#style is door, trapdoor, ladder, stairs, transport (else, 
-#default material is wood
+#TODO: style is door, trapdoor, ladder, stairs, transport 
+#description (about the door)
+#cutscene (when opening door first time; save passing through for room)
 class Door:
-    def __init__(self, locked="False", style="door", material="wood"):
+    def __init__(self, keyID, description, locked=False, cutscene="Default"):
+        self.keyID = keyID
+        self.description = description
         self.locked = locked
-        self.style = style
-        self.material = material
+        self.cutscene = cutscene
+        
+    def look(self):
+        print(self.description)
+    
+    def changeLock(self, newID):
+        self.keyID = newID
+    
+    def lock(self, des):    #For use by developer, not user
+        self.locked = True
+        print(des)          #prints text for when door locks (hard-coded)
+        
+    def unlock(self, key):  #requires the key ID to test door
+        self.locked = False
+        if key == keyID:
+            if self.cutscene == "Default":
+                num = randint(5)
+                if num == 1:
+                    print("You hear the lock faintly click and the door eases open.")
+                elif num == 2:
+                    print("The key slowly turns until the lock clicks open.")
+                elif num == 3:
+                    print("The door unlocks and easily swings open.")
+                elif num == 4:
+                    print("The key fits snuggly in the lock.  The door is open.")
+                elif num == 5:
+                    print("\"Click!\"  The door swings open.")
+            else:
+                print(self.cutscene)
+        else:
+            print("The key didn't work.  The door is still locked.")  #TODO add more responses
+
+#************************************************************************************
 
 class Room:
     def __init__(self, num, Quadrant, description, cutscene=None):
+        self.num = num  #not required, as rooms will be entered into list "allRooms" in order
+        
         self.q0 = Quadrant[0]
         self.q1 = Quadrant[1]   #potential door
         self.q2 = Quadrant[2]
@@ -26,11 +56,13 @@ class Room:
         self.q5 = Quadrant[5]
         self.q6 = Quadrant[6]   #potential door
         self.q7 = Quadrant[7]
+        
         self.description = description
         self.cutscene = cutscene   #if cutscene != None, play
-        self.firstTime = True      #This is a new room that hasn't been entered yet
+        self.firstEnter = True      #This is a new room that hasn't been entered yet
+    
     def playCutscene(self):
-        if self.firstTime and self.cutscene != None:
+        if self.firstEnter and self.cutscene != None:
             print(self.cutscene)
     def look(self):
         print(self.description)
@@ -43,6 +75,29 @@ class Room:
 
 
 #******************************************************************
+
+'''
+template = Room(0,
+                [None,
+                 None,
+                 None,
+                 None,
+                 None,
+                 None,
+                 None,
+                 None],
+                ""\
+                "",
+                ""\
+                "")
+
+Door("True", )  #unlocking doors automatically opens them
+Box()
+Table()
+Desk()
+Item()
+'''
+
 
 
 bedroom = Room(0, 
@@ -57,24 +112,71 @@ bedroom = Room(0,
                 Door(True),
                 Item("Bed", "It looks warm with fluffy pillows and blankets."\
                      "  You feel like you could sleep in it for years."),
-                None,
+                Box(),
                 None],
                "You are in a comfy bedroom.  The wooden floor is polished "\
                "clean, as is most of the room.  There is a small jewelry "\
-               "box at the foot of a soft, fluffy bed and two doors.  One to "\
+               "box at the foot of a soft, fluffy bed, which is next to "\
+               "what appears to be a desk.  There are two doors, one to "\
                "the north and one to the east.",
                "You begin to stir as you awaken from a deep sleep.  You feel "\
                "a cold sweat on your forehead and your vision is hazy.  "\
                "As you sit up, your vision clears and you start to make "\
                "sense of your surroundings.")
 
-#kitchen = 
+kitchen = Room(0,
+                [None,
+                 None,
+                 None,
+                 None,
+                 None,
+                 None,
+                 None,
+                 None],
+                ""\
+                "",
+                ""\
+                "")
+                "")
 
-#foyer = 
+foyer = Room(0,
+                [None,
+                 None,
+                 None,
+                 None,
+                 None,
+                 None,
+                 None,
+                 None],
+                ""\
+                "",
+                ""\
+                "")
 
-#closet = 
+closet = Room(0,
+                [None,
+                 None,
+                 None,
+                 None,
+                 None,
+                 None,
+                 None,
+                 None],
+                ""\
+                "",
+                ""\
+                "")
 
 
-allRooms = [bedroom]
+allRooms = [bedroom, kitchen, None, None, None, None, None, None, None, None,
+            foyer, closet, None, None, None, None, None, None, None, None,
+            None, None, None, None, None, None, None, None, None, None,
+            None, None, None, None, None, None, None, None, None, None,
+            None, None, None, None, None, None, None, None, None, None,
+            None, None, None, None, None, None, None, None, None, None,
+            None, None, None, None, None, None, None, None, None, None,
+            None, None, None, None, None, None, None, None, None, None,
+            None, None, None, None, None, None, None, None, None, None,
+            None, None, None, None, None, None, None, None, None, None]
 
 
