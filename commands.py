@@ -31,17 +31,17 @@ allCmds = [quit, look, go, opens, close, take, put, use, equip, eat]
 
 
 def parseCmd(cmd, room, player, loc):
-    use = "None"
+    said = "None"
     for i in allCmds:
         for j in (i.keywords):
             if cmd[0] == j:
-                use = i.name  #consider command confusion (multiple potential options)
+                said = i.name  #consider command confusion (multiple potential options)
     
-    if use == "look":
+    if said == "look":
         LOOK(cmd, room, player)
-    elif use == "go":
+    elif said == "go":
         GO()
-    elif use == "quit":
+    elif said == "quit":
         #function to prompt saving to text doc (call separate save function)
         QUIT()
         return False
@@ -62,15 +62,33 @@ def QUIT():
 #quadrant the player is in (does not always have to apply
 #(default to None)
 def LOOK(cmd, room, player):
+    atCmd = False
+    
     if len(cmd) == 1:
         room.look()
         
-    elif cmd[1] == "around" or cmd[1] == "room":
+    elif cmd[1] == "around" or cmd[1] == "room" or cmd[1] == "here":
         room.look()
+
+#THESE 2 will be combined as shown
+
+    elif cmd[0] != "look":  #treat similar to below (like "look at")
+        del cmd[0]          #includes view, study, see, etc.
+        atCmd = True
         
-    elif cmd[1] == "at" ann len(cmd) > 2:
+    elif cmd[0] == "look":  #cases like "look key"
+        def cmd[0]
+        atCmd = True
+        
+    elif cmd[1] == "at" and len(cmd) > 2:
         for i in range(2):
             del cmd[0]
+        atCmd = True
+    
+    else:
+        print("I'm not sure what you're looking at.")  #TODO add more cases and color
+    
+    if atCmd:
         a = " "
         item = a.join(cmd)
         
@@ -78,12 +96,28 @@ def LOOK(cmd, room, player):
         inventory = -2
         
         if player.roomLoc == center:  #need to find what user is talking about
-                                      #(chest, door, item, NPC)
-            pass                      #does not include inside chests
+            count = 0                 #(chest, door, item, NPC), does not include inside chests
+            description = ""
+            for i in room.quads:
+                for j in i.names:
+                    if j == item:
+                        count += 1
+                        description = i.description
+            if count > 1:
+                print("There are multiple.  Plese refine.")  #duplicates
+                                                             #TODO add more and color
+            
+            elif count == 0:
+                print("I could not find any.")  #TODO add more and color
+            
+            else:
+                print(description)
+        
         elif player.roomLoc == inventory:  #search through inventory
             pass                           #(includes equipped gear)
-        else:
-            pass
+        
+        else:       #lies in quds 0-7, look in chests, interact with items
+            pass    #
         
 
 

@@ -17,19 +17,27 @@ class Player:
     
     def __init__(self, name):
         self.name = name
+        
     def addToInv(self, items):
         inventory.add_item(items)
+    
     def remFromInv(self, items):
         copy_items = inventory.remove_item(items)
         return copy_items
+    
     def clearInv(self):
         inventory.remove_all()
+    
+    def equip:
+        pass
+    def unequip:
+        pass
 
 
 
 
 class NPC:
-    def __init__(self, name, inventory):
+    def __init__(self, names, inventory):
         self.name = name
         self.inventory = inventory
 

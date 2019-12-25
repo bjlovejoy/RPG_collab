@@ -10,10 +10,11 @@ from items import *
 #locked is set to False as default
 #cutscene (when opening door first time; save passing through for room)
 class Door:
-    def __init__(self, keyID, description, locked=False, cutscene="Default"):
-        self.keyID = keyID
+    def __init__(self, names, description, locked=False, keyID=None, cutscene="Default"):
+        self.names = names
         self.description = description
         self.locked = locked
+        self.keyID = keyID
         self.cutscene = cutscene
         
     def look(self):
@@ -79,11 +80,11 @@ class Room:
         multiple = 0
         for i in self.quads:
             if i != None:
+                pass
                 
 #STILL NEEDS WORK ^^^^^^^
 
    
-    
     
     def saveState(self):
         print(Fore.CYAN + "All rooms states saved to text document")
@@ -157,7 +158,6 @@ kitchen = Room(0,
                 ""\
                 "",
                 ""\
-                "")
                 "")
 
 foyer = Room(0,

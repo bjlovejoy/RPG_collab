@@ -3,11 +3,17 @@ from colorama import Fore, Style
 
 #make sure description starts with lowercase letter unless intended capital
 class Item:
-    def __init__(self, names, description):
+    def __init__(self, names, description, equipable=False):
         self.names = names
         self.description = description
+        self.equipable = equipable
+        self.equiped = False
     def look(self):
         print((self.description.capitalize()))
+    def equip:
+        pass
+    def unequip:
+        pass
         
 
 class Weapon:
