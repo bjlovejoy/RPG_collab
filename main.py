@@ -4,7 +4,7 @@
 #global - completely different object outside of function
 
 
-#from playsound import playsound
+from playsound import playsound
 from colorama import Fore, Style
 #user (yellow), error (red), updates/system message (cyan)
 #NPCs and characters (green)

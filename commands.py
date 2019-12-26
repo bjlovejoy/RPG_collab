@@ -67,26 +67,17 @@ def LOOK(cmd, room, player):
     if len(cmd) == 1:
         room.look()
         
-    elif cmd[1] == "around" or cmd[1] == "room" or cmd[1] == "here":
+    elif (cmd[1] == "around" or cmd[1] == "room" or cmd[1] == "here") and len(cmd) == 2:
         room.look()
-
-#THESE 2 will be combined as shown
-
-    elif cmd[0] != "look":  #treat similar to below (like "look at")
-        del cmd[0]          #includes view, study, see, etc.
-        atCmd = True
         
-    elif cmd[0] == "look":  #cases like "look key"
-        def cmd[0]
-        atCmd = True
-        
-    elif cmd[1] == "at" and len(cmd) > 2:
+    elif (cmd[1] == "at" or cmd[1] == "for") and len(cmd) > 2:
         for i in range(2):
             del cmd[0]
         atCmd = True
     
     else:
-        print("I'm not sure what you're looking at.")  #TODO add more cases and color
+        del cmd[0]          #includes view, study, see, etc.
+        atCmd = True        #also cases like "look key"
     
     if atCmd:
         a = " "
@@ -99,6 +90,25 @@ def LOOK(cmd, room, player):
             count = 0                 #(chest, door, item, NPC), does not include inside chests
             description = ""
             for i in room.quads:
+                if i != None:
+                    for j in i.names:
+                        if j == item:
+                            count += 1
+                            description = i.description
+            if count > 1:
+                print("There are multiple.  Plese refine.")  #duplicates
+                                                             #TODO add more and color
+            
+            elif count == 0:
+                print("I could not find any.")  #TODO add more and color
+            
+            else:
+                print(description)
+        
+        elif player.roomLoc == inventory:  #search through inventory
+            count = 0                      #(includes equipped gear)
+            description = ""
+            for i in (player.inventory).items:
                 for j in i.names:
                     if j == item:
                         count += 1
@@ -113,12 +123,33 @@ def LOOK(cmd, room, player):
             else:
                 print(description)
         
-        elif player.roomLoc == inventory:  #search through inventory
-            pass                           #(includes equipped gear)
-        
         else:       #lies in quds 0-7, look in chests, interact with items
-            pass    #
-        
+                    #find out object type and use .names attribute
+                    #If interacting with item, need to search items on item
+            if quads[(player.roomLoc)] == Box:
+                for i in quads[(player.roomLoc)].items:
+                    for j in i.names:
+                        if j == item:
+                            count += 1
+                            description = i.description
+                if count > 1:
+                    print("There are multiple.  Plese refine.")  #duplicates
+                                                                #TODO add more and color
+                
+                elif count == 0:
+                    print("I could not find any.")  #TODO add more and color
+                
+                else:
+                    print(description)
+            
+            if quads[(player.roomLoc)] == item:
+                pass
+            
+            elif quads[(player.roomLoc)] == NPC:
+                if:
+                    pass    #check if looking at NPC
+                else:
+                    pass    #checkif looking at NPCs items/inventory
 
 
 #may need to add look statement for chests

@@ -129,7 +129,7 @@ bedroom = Room(0,
                 Box(["jewelry box", "jewelrybox", "jewelry"],
                     [Item(["key", "home key", "home"], "a small, polished, silver key with the "\
                           "inscription, \"Home\""),
-                    Item(["ring", "gold ring"], "an old gold ring, not worth very much")],
+                    Item(["gold ring", "ring"], "an old gold ring, not worth very much")],
                     False, 3),
                 Door(True),
                 Item("Bed", "It looks warm with fluffy pillows and blankets."\

@@ -12,8 +12,8 @@ def createPlayer():
 
 #see notebook for additional player attributes
 class Player:
-    inventory = Box()
-    roomLoc = -1  #Here, -1 (center tile), -2 (inventory) and 0-7 are quads
+    self.inventory = Box()
+    self.roomLoc = -1  #Here, -1 (center tile), -2 (inventory) and 0-7 are quads
     
     def __init__(self, name):
         self.name = name
@@ -38,8 +38,8 @@ class Player:
 
 class NPC:
     def __init__(self, names, inventory):
-        self.name = name
-        self.inventory = inventory
+        self.names = names
+        self.inventory = inventory  #treat as Box
 
 
 

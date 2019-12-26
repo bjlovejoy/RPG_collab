@@ -24,7 +24,15 @@ class Weapon:
     def look(self):
         print((self.description.capitalize()))
 
+class Interactable(self, names, description):   #if cmd is done, engage event
+    def __init__(self, names, description):
+        self.names = names
+        self.description = description
 
-#make interactable item, such as guess riddle answer
+#give promt, wait for response
+#if correct, change room/player state or give items/text to proceed
+
+
+#make interactable item, such as guess riddle answer (make need to incorporate Box())
 
 #make key class or key subclass (consider part of Door)
