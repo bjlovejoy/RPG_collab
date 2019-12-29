@@ -37,24 +37,48 @@ def parseCmd(cmd, room, player, loc):
             if cmd[0] == j:
                 said = i.name  #consider command confusion (multiple potential options)
     
-    if said == "look":
-        LOOK(cmd, room, player)
-    elif said == "go":
-        GO()
-    elif said == "quit":
+    if said == "quit":
         #function to prompt saving to text doc (call separate save function)
         QUIT()
         return False
+    elif said == "look":
+        LOOK(cmd, room, player)
+    elif said == "go":
+        GO(cmd, room, player, allRooms)
+    elif said == "opens":
+        pass
+    elif said == "close":
+        pass
+    elif said == "take":
+        pass
+    elif said == "put":
+        pass
+    elif said == "use":
+        pass
+    elif said == "equip":
+        pass
+    elif said == "eat":
+        pass
+    elif said == "touch":
+        pass
     else:
         print(Fore.RED + "I don't know what you're saying.")
         print(Style.RESET_ALL, end="", flush=True)
     return True
 
 
-
+#TODO: implement saving feature, need to pass rooms and player
 def QUIT():
-    pass
-    
+    good = False
+    while not good:
+        ans = input("Would you like to save your progress? (y/n)\n>>> ").lower()
+        if ans == "y":
+            print("Saving...  ", end="")
+            sleep(2)
+            print("Feature not implemented.\n")  #Game saved
+            good = True
+        elid ans == "n":
+            good = True
 
 
 #for looking in chests or at specific objects in chest,
@@ -142,14 +166,19 @@ def LOOK(cmd, room, player):
                 else:
                     print(description)
             
-            if quads[(player.roomLoc)] == item:
-                pass
+            elif quads[(player.roomLoc)] == Item:
+                print("Not sure how you're looking at this.")
+                #pass
+            
+            elif quads[(player.roomLoc)] == Interactable:
+                print("Still need to design this.")
+                #pass
             
             elif quads[(player.roomLoc)] == NPC:
-                if:
-                    pass    #check if looking at NPC
+                if quads[(player.roomLoc)].inventoryOpen:
+                    print((quads[(player.roomLoc)].inventory).list_items)   #check if looking at NPCs items/inventory
                 else:
-                    pass    #checkif looking at NPCs items/inventory
+                    print(quads[(player.roomLoc)].description)   #check if looking at NPC
 
 
 #may need to add look statement for chests
@@ -181,8 +210,12 @@ def GO(cmd, room, player, allRooms):
             print(Fore.RED + "Specify direction")
             print(Style.RESET_ALL, end="", flush=True)
             
-    elif direction == "n" or direction == "s" or direction == "e" or direction == "w":
+    elif (direction == "n" or direction == "s" or direction == "e" or
+          direction == "w" or direction == "u" or direction == "d"):
         location(direction, loc, allRooms)
+    
+    elif cmd[0] == "climb" or cmd[0] == "desend":
+        print("Not implemented yet")  #TODO u and d are not ready either
     
     else:
         print(Fore.RED + "I'm not sure where that's at.")  #TODO add more
@@ -191,7 +224,8 @@ def GO(cmd, room, player, allRooms):
 
 
 
-
+def OPENS():
+    pass  #set the roomLoc to the quadrant the box is in
 
 
 

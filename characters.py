@@ -37,8 +37,11 @@ class Player:
 
 
 class NPC:
-    def __init__(self, names, inventory):
+    self.inventoryOpen = False  #Is the player looking in their inventory (shopkeep)
+    
+    def __init__(self, names, description, inventory):
         self.names = names
+        self.description = description
         self.inventory = inventory  #treat as Box
 
 
@@ -70,6 +73,21 @@ def location(direction, loc, allRooms):
             loc -= 1
         else:
             able = False
+    
+    #TODO: for traveling up and down (not implemented yet)
+    """
+    elif direction == "u" and loc < 900:
+        if allRooms[loc] != None:
+            loc += 100
+        else:
+            able = False
+    
+    elif direction == "d" and loc > 100:
+        if allRooms[loc] != None:
+            loc -= 100
+        else:
+            able = False
+    """
     
     if able == False:
         print(Fore.RED + "You can't go that way")  #TODO add more text

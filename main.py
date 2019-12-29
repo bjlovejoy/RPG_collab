@@ -38,7 +38,7 @@ while(playing):
     cmd = (input(Fore.YELLOW + ">>> ").lower()).split()
     print(Style.RESET_ALL, end="", flush=True)
     
-    playing = parseCmd(cmd, room, player, loc)
+    playing = parseCmd(cmd, allRooms[loc], player, loc)
 
 
 print("\nUntil next time adventurer...\n")  #Add 2 more \n
