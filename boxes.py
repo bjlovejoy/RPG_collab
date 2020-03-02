@@ -1,17 +1,19 @@
 from random import randint
 from colorama import Fore, Style
 
-#************************************************************************
 
 #includes cabinets, chests, dressers, drawers, closets, bags, satchels
 class Box:
-    #names (all recognizable names of box), items (lists); locked (bool); capacity (int)
-    def __init__(self, names, items, locked=True, capacity=4, material="wood"):
+    def __init__(self, names: list, description: str, contents: list, locked: bool=True,
+                 capacity: int=4, material: str="wood"):
         self.names = names
-        self.items = items
+        self.description = description
+        self.contents = contents
         self.locked = locked
         self.capacity = capacity
         self.material = material
+
+
     #consider making this the open command
     def list_items(self):
         if len(self.items) == 0:
@@ -23,7 +25,7 @@ class Box:
                 if len(self.items) == 1:
                     print("Inside is", end=" ")
                 else:
-                    print("Inside are", end =" ")
+                    print("Inside are", end=" ")
             elif num == 2:
                 print("Inside you find", end=" ")
             elif num == 3:
@@ -112,16 +114,5 @@ class Table:
                 print((self.items[i]).description, end=", ")
 
 
-#************************************************************************
 
-
-#must include drawers
-#(initialize desktop with a table and drawers with Boxes)
-#(name drawers top and bottom)
-class Desk:
-    def __init__(self, names, desktop, drawers, material="wood"):
-        self.names = names
-        self.desktop = desktop
-        self.drawers = drawers
-        self.material = material
-
+#TODO: desk, which is table with boxes on top for drawers

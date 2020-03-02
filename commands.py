@@ -200,7 +200,7 @@ look at:    door
 
 
 
-
+#I don't think this incorporates doors (need to check is there is one, open/closed, locked)
 
 def GO(cmd, room, player, allRooms):
     direction = cmd[1][0]  #sends first character of direction
