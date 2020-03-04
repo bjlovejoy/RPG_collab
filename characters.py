@@ -7,7 +7,8 @@ def createPlayer():
     return player
 
 
-
+#make the player also hold the main loc
+#make player have in-between rooms bool
 
 
 #see notebook for additional player attributes

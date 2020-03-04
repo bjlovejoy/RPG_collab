@@ -6,10 +6,10 @@ class Command:
         self.name = name
         self.keywords = keywords
 
-quit = Command("quit", ["quit", "exit", "end", "q"])
+quit = Command("quit", ["quit", "exit", "end", "q", "leave"])  #if leave room, ask to specify direction
 
 look = Command("look", ["look", "see", "study", "view", "check"])
-go = Command("go", ["go", "walk", "run", "travel", "head", "leave"])
+go = Command("go", ["go", "walk", "run", "travel", "head"])
 opens = Command("open", ["open", "enter", "unlock"])
 close = Command("close", ["close"])
 
