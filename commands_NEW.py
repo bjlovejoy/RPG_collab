@@ -25,6 +25,28 @@ class Command:
         pass
 
 
+#initialize all command objects in a list to be referenced in parseCmd below
+'''
+list = [
+    look(names),
+    go(names),
+    take(names),
+]
+'''
+allCmds = [
+    look(["look", "see", "study", "view", "check"]),
+    go(["go", "walk", "run", "travel", "head"]),
+    opens(["open", "enter", "unlock"]),
+    close(["close", "shut"]),
+    take(["take", "grab"]),
+    put(["put", "place"]),
+    use(["use", "interact", "try"]),
+    equip(["equip"]),
+    eat(["eat", "drink"]),
+    touch(["touch", "feel"]),
+    
+]
+
 
 #here, cmd is the full string of user input
 def parseCmd(cmd, room, player):
