@@ -33,6 +33,13 @@ playing = True  #main loop bool
 
 #***********************************************************
 
+#NAMING Conventions
+"""
+major classes should start with capital letters
+commands should be in all lowercase
+consider using underscore naming for most
+"""
+
 
 while(playing):
     user_cmd = (input(Fore.YELLOW + ">>> ").lower()).split()

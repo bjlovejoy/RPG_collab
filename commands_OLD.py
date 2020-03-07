@@ -1,32 +1,6 @@
 from colorama import Fore, Style
 
 
-class Command:
-    def __init__(self, name, keywords):
-        self.name = name
-        self.keywords = keywords
-
-quit = Command("quit", ["quit", "exit", "end", "q", "leave"])  #if leave room, ask to specify direction
-
-look = Command("look", ["look", "see", "study", "view", "check"])
-go = Command("go", ["go", "walk", "run", "travel", "head"])
-opens = Command("open", ["open", "enter", "unlock"])
-close = Command("close", ["close"])
-
-take = Command("take", ["take", "grab"])
-put = Command("put", ["put", "place"])
-
-use = Command("use", ["use", "interact", "try"])  #need to equip before using if equipable
-equip = Command("equip", ["equip"])
-
-eat = Command("eat", ["eat", "drink"])
-touch = Command("touch", ["touch", "feel"])
-
-#attack, fight, build, create, talk to, push, set, lay, place, drop, remove
-#feel, cast, light, poop/pee, curse words, yell, break (strength checks),
-#activate, turn on, turn off, flip (switch), leave, rest (sleep), put (into)
-
-allCmds = [quit, look, go, opens, close, take, put, use, equip, eat]
 
 
 
