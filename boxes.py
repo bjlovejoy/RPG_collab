@@ -15,7 +15,7 @@ class Box:
 
 
     #consider making this the open command
-    def list_items(self):
+    def list_contents(self):
         if len(self.items) == 0:
             #add some more variations
             print("There's nothing inside.")

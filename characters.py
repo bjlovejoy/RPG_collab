@@ -16,6 +16,9 @@ class Player:
     self.inventory = Box()
     self.roomLoc = -1  #Here, -1 (center tile), -2 (inventory) and 0-7 are quads
     self.mapLoc = 0    #location of player in level
+
+    self.inBetween = False  #if player is between looking at a table and the center of the room
+                            #if divert from table. automatically "leave" table
     
     def __init__(self, name):
         self.name = name

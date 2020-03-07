@@ -48,6 +48,8 @@ allCmds = [
 ]
 
 
+#consider passing player/others to commands and be able to call them as self.player (no need to pass to functions)
+
 
 #attack, fight, build, create, talk to, push, set, lay, place, drop, remove
 #feel, cast, light, poop/pee, curse words, yell, break (strength checks),
@@ -57,7 +59,7 @@ allCmds = [
 
 
 #here, cmd is the full string of user input
-def parseCmd(cmd, room, player):
+def parseCmd(cmd, player, room):
 
     #first, determine which command it is
         #if not legit, check object specific commands -> pass to player location

@@ -72,7 +72,7 @@ class Room:
         if self.firstEnter and self.cutscene != None:
             print(self.cutscene)
     
-    def look(self):
+    def describe(self):
         print(self.description)
     
     #search quadrants for items/doors, NPCs, boxes, etc.
