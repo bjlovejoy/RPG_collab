@@ -2,7 +2,7 @@ from random import randint
 from colorama import Fore, Style
 
 #************************************************************************
-
+#tester
 #includes cabinets, chests, dressers, drawers, closets, bags, satchels
 class Box:
     #names (all recognizable names of box), items (lists); locked (bool); capacity (int)
