@@ -42,7 +42,7 @@ consider using underscore naming for most
 
 
 while(playing):
-    user_cmd = (input(Fore.YELLOW + ">>> ").lower()).split()
+    user_cmd = (input(Fore.YELLOW + ">>> ").lower()).split()   #get rid of extra spaces before/after/between input
     print(Style.RESET_ALL, end="", flush=True)
     
     playing = parseCmd(user_cmd, player, allRooms[player.mapLoc])

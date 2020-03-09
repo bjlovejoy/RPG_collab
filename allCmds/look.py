@@ -1,12 +1,11 @@
-
-#TODO: link room and cmd to player so I only have to pass player
+from colorama import Fore, Style
 
 
 class look:
     def __init__(self, keywords):
         self.name = keywords[0]
         self.keywords = keywords
-        self.filler_words = ["at", "in", "for", "the", "a", "an"]  #put this in __init__
+        self.filler_words = ["at", "in", "for", "the", "a", "an", "my", "his", "her"]  #put this in __init__
         #(consider making look a cmd class object and passing it to look function)
           #(then, command class can have function for parsing and searching for the right commands)
 
@@ -18,22 +17,34 @@ class look:
     def execute_center(self, cmd, player, room):
 
         self.remove_filler(cmd)
+        search_room = False
 
         if len(cmd) == 1:
             room.describe()
         
         elif len(cmd) == 2:
             if cmd[1] == "inventory":
+                player.enter_inventory()  #TODO: set to -2
                 player.inventory.list_inventory()
             
             elif cmd[1] in ["here", "around", "room"]:
                 room.describe()
             
             else:
-                check_room  #
+                search_room = True
+                item = cmd[1]
+        
+        else:
+            item = " ".join(cmd[1:])
+            search_room = True
+
+        if search_room:
+            room.find(item)  #TODO: search/print description here or in room class?
+            
+
 
     def execute_inventory(self, cmd, player, room):
-        pass
+        pass  #If not found, print note about exiting inventory first
     
     def execute_box(self, cmd, player, room):
 

@@ -2,6 +2,8 @@ from colorama import Fore, Style
 
 
 #make sure description starts with lowercase letter unless intended capital
+
+#short description for Box list, long for Look (set long to None, if None, set to short)
 class Item:
     def __init__(self, names, description, equipable=False):
         self.names = names
