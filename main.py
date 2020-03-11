@@ -40,6 +40,21 @@ commands should be in all lowercase
 consider using underscore naming for most
 """
 
+#FOR TESTING - need to store all commands and output (tabbed in) to a file
+
+"""
+Ex.
+
+look around room
+    Not sure what you're talking about. (red text?)
+look room
+    You see a dusty cupboard with...
+go n
+    You can't go that way. (red text?)
+try on armor
+    CRITICAL ERROR (traceback game crashed)
+
+"""
 
 while(playing):
     user_cmd = (input(Fore.YELLOW + ">>> ").lower()).split()   #get rid of extra spaces before/after/between input

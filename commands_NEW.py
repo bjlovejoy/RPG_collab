@@ -2,35 +2,45 @@ from colorama import Fore, Style
 
 #Template (not worth doing super().__init__(self, etc.) )
 """
-class Command:
+class command(Command):
     def __init__(self, keywords):
         self.name = keywords[0]
         self.keywords = keywords
     
-    def execute_center(self, cmd, room, player):
+    def execute_center(self, cmd, player, room):
         pass
 
-    def execute_inventory(self, cmd, room, player):
+    def execute_inventory(self, cmd, player, room):
         pass
     
-    def execute_box(self, cmd, room, player):
+    def execute_box(self, cmd, player, room):
         pass
     
-    def execute_table():
+    def execute_table(self, cmd, player, room):
         pass
     
-    def execute_desk():
+    def execute_desk(self, cmd, player, room):
         pass  #Not implemented yet
 
-    def execute_interactable(self, cmd, room, player):
+    def execute_interactable(self, cmd, player, room):
         pass
 
-    def execute_NPC(self, cmd, room, player):
+    def execute_NPC(self, cmd, player, room):
         pass
 
-    def execute_door(self, cmd, room, player):
+    def execute_door(self, cmd, player, room):
         pass
 """
+
+class Command:
+    self.filler_words = ["at", "in", "for", "the", "a", "an", "my", "his", "her"]
+
+    def remove_filler(self, cmd):
+        for word in filler_words:
+            if word in cmd:
+                cmd.remove(word)
+
+
 
 #initialize all command objects in a list to be referenced in parseCmd below
 allCmds = [
@@ -47,10 +57,6 @@ allCmds = [
     
 ]
 
-
-#consider passing player/others to commands and be able to call them as self.player (no need to pass to functions)
-
-
 #attack, fight, build, create, talk to, push, set, lay, place, drop, remove
 #feel, cast, light, poop/pee, curse words, yell, break (strength checks),
 #activate, turn on, turn off, flip (switch), leave, rest (sleep), put (into)
@@ -61,9 +67,13 @@ allCmds = [
 #here, cmd is the full string of user input
 def parseCmd(cmd, player, room):
 
-    #first, determine which command it is
+    #first need to determine which command it is
         #if not legit, check object specific commands -> pass to player location
         #if potentially multiple commands, must differentiate -> pass to player location (try to avoid)
+
+
+
+
 
     #then, determine which part of room
     #(if in between center and box, indicate so and allow pass to both)
@@ -74,36 +84,34 @@ def parseCmd(cmd, player, room):
         determined_cmd.execute_center()
     
     elif player.roomLoc == -2:
-        pass
+        determined_cmd.execute_inventory()
     
     #New if block in case in between center and box?
     
     if quadType is Box:
-        pass
+        determined_cmd.execute_box()
 
     elif quadType is Table:
-        pass
+        determined_cmd.execute_table()
 
     elif quadType is Desk:
-        pass  #Not implemented yet
+        determined_cmd.execute_desk()  #Not implemented yet
 
     elif quadType is Interactable:
-        pass
+        determined_cmd.execute_interactable()
 
     elif quadType is NPC:
-        pass
+        determined_cmd.execute_NPC()
 
     elif quadType is Door:
-        pass
+        determined_cmd.execute_door()
     
     else
+        pass  #invalid command? should not get here
 
 
 
 
-
-#make parsing commands either a tight loop using a list of commands or allow
-#all commands to execute the same way (ex. cmd.execute())
 
 
 
