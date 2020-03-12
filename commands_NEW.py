@@ -33,7 +33,7 @@ class command(Command):
 """
 
 class Command:
-    self.filler_words = ["at", "in", "for", "the", "a", "an", "my", "his", "her"]
+    self.filler_words = ["at", "in", "for", "the", "a", "an", "to", "my", "his", "her"]
 
     def remove_filler(self, cmd):
         for word in filler_words:
@@ -78,7 +78,6 @@ def parseCmd(cmd, player, room):
     #then, determine which part of room
     #(if in between center and box, indicate so and allow pass to both)
 
-    quadType = type(room[player.roomLoc])
 
     if player.roomLoc == -1:
         determined_cmd.execute_center()
@@ -86,28 +85,31 @@ def parseCmd(cmd, player, room):
     elif player.roomLoc == -2:
         determined_cmd.execute_inventory()
     
+    else:
+        quadType = type(room[player.roomLoc])
+    
     #New if block in case in between center and box?
     
-    if quadType is Box:
-        determined_cmd.execute_box()
+        if quadType is Box:
+            determined_cmd.execute_box()
 
-    elif quadType is Table:
-        determined_cmd.execute_table()
+        elif quadType is Table:
+            determined_cmd.execute_table()
 
-    elif quadType is Desk:
-        determined_cmd.execute_desk()  #Not implemented yet
+        elif quadType is Desk:
+            determined_cmd.execute_desk()  #Not implemented yet
 
-    elif quadType is Interactable:
-        determined_cmd.execute_interactable()
+        elif quadType is Interactable:
+            determined_cmd.execute_interactable()
 
-    elif quadType is NPC:
-        determined_cmd.execute_NPC()
+        elif quadType is NPC:
+            determined_cmd.execute_NPC()
 
-    elif quadType is Door:
-        determined_cmd.execute_door()
-    
-    else
-        pass  #invalid command? should not get here
+        elif quadType is Door:
+            determined_cmd.execute_door()
+        
+        else
+            pass  #empty space (None type or other)
 
 
 

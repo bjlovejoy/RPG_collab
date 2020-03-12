@@ -18,7 +18,8 @@ class look(Command):
             room.describe()
         
         elif len(cmd) == 2:
-            if cmd[1] == "inventory":
+            if cmd[1] == "inventory":       #consider (rather than len):   if "inventory" in cmd
+                                            #if want to make multiple names for inventory, do player.inventory.names
                 player.enter_inventory()            #TODO: set to -2
                 player.inventory.list_inventory()   #TODO: create this too
             
@@ -30,11 +31,12 @@ class look(Command):
                 item = cmd[1]
         
         else:
-            item = " ".join(cmd[1:])
+            item = " ".join(cmd[1:])    #should be the item we're searching for
             search_room = True
 
         if search_room:
-            room.find(item)  #TODO: search/print description here or in room class? (return list)
+            room.findMatch(item)  #TODO: search/print description here or in room class? (return list)
+                             #could also make it return the quadrant if it exists (-1 if not?)
 
 
 
