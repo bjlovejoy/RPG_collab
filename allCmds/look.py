@@ -11,7 +11,7 @@ class look(Command):
     
     def execute_center(self, cmd, player, room):
 
-        self.remove_filler(cmd)
+        self.remove_filler(cmd)  #Don't edit cmd directly, save to new object (need to check for words like at/in for boxes and tables)
         search_room = False
 
         if len(cmd) == 1:
@@ -47,19 +47,14 @@ class look(Command):
             
             else:
                 result.describe()    #should be door, box, NPC, etc
+                #check if box or table and existance of triggers to open (at/on-table, in/inside-box)
+                #then have to do small open cmd to check and handle locks and others
                 #may need to enter newline here?
 
 
-
-            #try to generalize this (check if it exists, return object and type)
-            #(will need for take/put/etc - does item exist, then do a thing)
-            #(make one for rooms, chests, inventory, etc.)
-
-
-            #if multiple, return string
-            #if none, return none
-            #if box, door, etc, return entire object (may not work for take/put/modification - fine for printing description)
-            #make point of checking object type first
+            #"look in chest" - should this be allowed (call open), or require player to open
+            #(special circumstance, similar to look on table)
+            #maybe give description of chest with allude to being open/locked (hint the player to use open/unlock cmd)
 
 
 
