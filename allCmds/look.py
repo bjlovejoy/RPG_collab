@@ -35,8 +35,31 @@ class look(Command):
             search_room = True
 
         if search_room:
-            room.findMatch(item)  #TODO: search/print description here or in room class? (return list)
+
+            result = room.findMatch(item)  #TODO: search/print description here or in room class? (return list)
                              #could also make it return the quadrant if it exists (-1 if not?)
+
+            if result == None:
+                pass    #could not find it (make list of string and pick one)
+            
+            elif type(result) is str:
+                pass    #there are multiple, please refine (list of responses to choose from)
+            
+            else:
+                result.describe()    #should be door, box, NPC, etc
+                #may need to enter newline here?
+
+
+
+            #try to generalize this (check if it exists, return object and type)
+            #(will need for take/put/etc - does item exist, then do a thing)
+            #(make one for rooms, chests, inventory, etc.)
+
+
+            #if multiple, return string
+            #if none, return none
+            #if box, door, etc, return entire object (may not work for take/put/modification - fine for printing description)
+            #make point of checking object type first
 
 
 

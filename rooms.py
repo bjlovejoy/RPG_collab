@@ -31,17 +31,39 @@ class Room:
         print(self.description)
     
     #search quadrants for items/doors, NPCs, boxes, etc.
-    #RETURNS item, not for modification (READ ONLY) - NEED to consider multiple and if none exists
+    #RETURNS item, not for modification (READ ONLY)
     #given "name" of item, not type (ex. chest, steel door)
     def findMatch(self, item):
-        multiple = 0
-        for i in self.quads:
-            if i != None:
-                pass
+        
+        num_results = 0
+        result = None
+
+        for q in self.quads:
+            if q != None:
+                for n in q.names:
+                    if n == item:
+                        result = q
+                        num_results += 1
+        
+        if multiple <= 1:
+            return result       #return object or None
+        
+        else:
+            return "multiple"   #consider replacing with class containing name "multiple"
+
+        #for look, this should be handled by look (make a more general function here)
+
+
+
+
    
 
    #make similar function to above, but return quadrant number
    #(0-7, -1 for no match, so cmd can edit it directly) - consider multiple and no match
+
+   #make one more simply to test if the object exists (may not be useful)
+
+
 
     def saveState(self):
         print(Fore.CYAN + "All rooms states saved to text document")
