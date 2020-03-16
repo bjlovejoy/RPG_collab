@@ -26,31 +26,6 @@ def QUIT():
 
 
 def LOOK(cmd, room, player):
-
-    a = " "
-    item = a.join(cmd)
-    
-    center = -1
-    inventory = -2
-    
-    if player.roomLoc == center:  #need to find what user is talking about
-        count = 0                 #(chest, door, item, NPC), does not include inside chests
-        description = ""
-        for i in room.quads:
-            if i != None:
-                for j in i.names:
-                    if j == item:
-                        count += 1
-                        description = i.description
-        if count > 1:
-            print("There are multiple.  Plese refine.")  #duplicates
-                                                            #TODO add more and color
-        
-        elif count == 0:
-            print("I could not find any.")  #TODO add more and color
-        
-        else:
-            print(description)
     
     elif player.roomLoc == inventory:  #search through inventory
         count = 0                      #(includes equipped gear)

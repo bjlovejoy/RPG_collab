@@ -35,7 +35,7 @@ class command(Command):
 class Command:
     self.filler_words = ["at", "in", "for", "the", "a", "an", "to", "my", "his", "her"]
 
-    def remove_filler(self, cmd):
+    def remove_filler(self, cmd):       #TODO:  need to consider excluding words
         for word in filler_words:
             if word in cmd:
                 cmd.remove(word)

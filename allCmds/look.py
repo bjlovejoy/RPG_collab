@@ -11,7 +11,7 @@ class look(Command):
     
     def execute_center(self, cmd, player, room):
 
-        self.remove_filler(cmd)  #Don't edit cmd directly, save to new object (need to check for words like at/in for boxes and tables)
+        self.remove_filler(cmd)  #TODO: Don't edit cmd directly, save to new object (need to check for words like at/in for boxes and tables)
         search_room = False
 
         if len(cmd) == 1:
@@ -46,6 +46,7 @@ class look(Command):
                 pass    #there are multiple, please refine (list of responses to choose from)
             
             else:
+                if type(result) == Table
                 result.describe()    #should be door, box, NPC, etc
                 #check if box or table and existance of triggers to open (at/on-table, in/inside-box)
                 #then have to do small open cmd to check and handle locks and others
