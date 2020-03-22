@@ -33,7 +33,7 @@ class Room:
     #search quadrants for items/doors, NPCs, boxes, etc.
     #RETURNS item, not for modification (READ ONLY)
     #given "name" of item, not type (ex. chest, steel door)
-    def findMatch(self, item):
+    def find_match(self, item):
         
         num_results = 0
         result = None
@@ -54,12 +54,10 @@ class Room:
         #for look, this should be handled by look (make a more general function here)
 
 
-
-
-   
-
-   #make similar function to above, but return quadrant number
-   #(0-7, -1 for no match, so cmd can edit it directly) - consider multiple and no match
+    def find_match_quad(self, item):
+        pass
+        #make similar function to above, but return quadrant number
+        #(0-7, -1 for no match, so cmd can edit it directly) - consider multiple and no match
 
    #make one more simply to test if the object exists (may not be useful)
 

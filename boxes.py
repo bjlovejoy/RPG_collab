@@ -4,7 +4,7 @@ from colorama import Fore, Style
 
 #includes cabinets, chests, dressers, drawers, closets, bags, satchels
 class Box:
-    def __init__(self, names: list, description: str, contents: list, locked: bool=True,
+    def __init__(self, names: list, description: str, contents: list, locked: bool=False,
                  capacity: int=4, material: str="wood"):
         self.names = names
         self.description = description

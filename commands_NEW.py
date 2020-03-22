@@ -23,7 +23,7 @@ class command(Command):
         pass  #Not implemented yet
 
     def execute_interactable(self, cmd, player, room):
-        pass
+        pass  #Not implemented yet
 
     def execute_NPC(self, cmd, player, room):
         pass
@@ -35,11 +35,22 @@ class command(Command):
 class Command:
     self.filler_words = ["at", "in", "for", "the", "a", "an", "to", "my", "his", "her"]
 
-    def remove_filler(self, cmd):       #TODO:  need to consider excluding words
-        for word in filler_words:
-            if word in cmd:
-                cmd.remove(word)
+    def remove_filler(self, cmd, exceptions=None):
 
+        if exceptions is not None:
+            pass  #TODO: make copy of filler words and save passed exceptions
+            filler = self.filler_words
+            for word in exceptions:
+                filler.remove(word)
+
+        else:
+            filler = self.filler_words
+
+        cmd_minimal = cmd
+        for word in filler:
+            if word in cmd_minimal:
+                cmd_minimal.remove(word)
+        return cmd_minimal
 
 
 #initialize all command objects in a list to be referenced in parseCmd below

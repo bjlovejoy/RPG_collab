@@ -25,59 +25,6 @@ def QUIT():
 
 
 
-def LOOK(cmd, room, player):
-    
-    elif player.roomLoc == inventory:  #search through inventory
-        count = 0                      #(includes equipped gear)
-        description = ""
-        for i in (player.inventory).items:
-            for j in i.names:
-                if j == item:
-                    count += 1
-                    description = i.description
-        if count > 1:
-            print("There are multiple.  Plese refine.")  #duplicates
-                                                            #TODO add more and color
-        
-        elif count == 0:
-            print("I could not find any.")  #TODO add more and color
-        
-        else:
-            print(description)
-    
-    else:       #lies in quds 0-7, look in chests, interact with items
-                #find out object type and use .names attribute
-                #If interacting with item, need to search items on item
-        if quads[(player.roomLoc)] == Box:
-            for i in quads[(player.roomLoc)].items:
-                for j in i.names:
-                    if j == item:
-                        count += 1
-                        description = i.description
-            if count > 1:
-                print("There are multiple.  Plese refine.")  #duplicates
-                                                            #TODO add more and color
-            
-            elif count == 0:
-                print("I could not find any.")  #TODO add more and color
-            
-            else:
-                print(description)
-        
-        elif quads[(player.roomLoc)] == Item:
-            print("Not sure how you're looking at this.")
-            #pass
-        
-        elif quads[(player.roomLoc)] == Interactable:
-            print("Still need to design this.")
-            #pass
-        
-        elif quads[(player.roomLoc)] == NPC:
-            if quads[(player.roomLoc)].inventoryOpen:
-                print((quads[(player.roomLoc)].inventory).list_items)   #check if looking at NPCs items/inventory
-            else:
-                print(quads[(player.roomLoc)].description)   #check if looking at NPC
-
 
 
 
