@@ -59,32 +59,23 @@ class look(Command):
                 
                 elif type(result) is Table:
                     if "at" in cmd:
-                        pass  #print table description
+                        pass  #TODO: print table description
                     
                     elif any(i in cmd for i in ["on", "ontop", "top"]):
-                        pass  #print table contents
+                        pass  #TODO: print table contents
                     
                     else:
-                        pass  #print both, one after the other
+                        pass  #TODO: print both, one after the other
                 
                 elif type(result) is Door:
-                    pass  #need this?
+                    pass  #DO NOT IMPLEMENT in other places - doors controlled from center (okay here since just looking)
 
                 elif type(result) is NPC:
                     pass  # check if NPC's inventory is open
                           # check if in battle with NPC (look for weaknesses/hints/fighting style)
                 
-                elif type(result) is NPC:
-                    pass
-                
                 else:
-                    print("Should not be able to get here.")
-                
-                
-                #should be door, box, NPC, etc
-                #check if box or table and existance of triggers to open (at/on-table, in/inside-box)
-                #then have to do small open cmd to check and handle locks and others
-                #may need to enter newline here?
+                    print("Should not be able to get here [end of LOOK]")
 
 
             #"look in chest" - should this be allowed (call open), or require player to open
