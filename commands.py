@@ -1,57 +1,17 @@
 from colorama import Fore, Style
 
-#Template (not worth doing super().__init__(self, etc.) )
-"""
-class command(Command):
-    def __init__(self, keywords):
-        self.name = keywords[0]
-        self.keywords = keywords
-    
-    def execute_center(self, cmd, player, room):
-        pass
-
-    def execute_inventory(self, cmd, player, room):
-        pass
-    
-    def execute_box(self, cmd, player, room):
-        pass
-    
-    def execute_table(self, cmd, player, room):
-        pass
-    
-    def execute_desk(self, cmd, player, room):
-        pass  #Not implemented yet
-
-    def execute_interactable(self, cmd, player, room):
-        pass  #Not implemented yet
-
-    def execute_NPC(self, cmd, player, room):
-        pass
-
-    def execute_door(self, cmd, player, room):
-        pass
-"""
-
 class Command:
     self.filler_words = ["at", "in", "for", "the", "a", "an", "to", "my", "his", "her"]
 
-    def remove_filler(self, cmd, exceptions=None):
-
-        if exceptions is not None:
-            pass  #TODO: make copy of filler words and save passed exceptions
-            filler = self.filler_words
-            for word in exceptions:
-                filler.remove(word)
-
-        else:
-            filler = self.filler_words
+    def remove_filler(self, cmd, exceptions: list=[]]):
 
         cmd_minimal = cmd
-        for word in filler:
-            if word in cmd_minimal:
-                cmd_minimal.remove(word)
-        return cmd_minimal
 
+        for word in self.filler_words:
+            if word in cmd_minimal and word not in exceptions:
+                cmd_minimal = cmd_minimal.remove(word)
+
+        return cmd_minimal
 
 #initialize all command objects in a list to be referenced in parseCmd below
 allCmds = [
@@ -81,9 +41,7 @@ def parseCmd(cmd, player, room):
     #first need to determine which command it is
         #if not legit, check object specific commands -> pass to player location
         #if potentially multiple commands, must differentiate -> pass to player location (try to avoid)
-
-
-
+    
 
 
     #then, determine which part of room

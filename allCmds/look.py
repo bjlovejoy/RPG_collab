@@ -1,4 +1,5 @@
 from colorama import Fore, Style
+from commands import Command
 
 
 class look(Command):
@@ -15,8 +16,9 @@ class look(Command):
             room.describe()
         
         elif len(short_cmd) == 2:
-            if short_cmd[1] == "inventory":       #consider (rather than len):   if "inventory" in cmd
-                                            #if want to make multiple names for inventory, do player.inventory.names
+            if short_cmd[1] == "inventory":
+                    #consider (rather than len):   if "inventory" in cmd
+                    #if want to make multiple names for inventory, do player.inventory.names
                 player.enter_inventory()            #TODO: set to -2
                 player.inventory.list_inventory()   #TODO: create this too
             
@@ -28,31 +30,39 @@ class look(Command):
                 item = short_cmd[1]
         
         else:
-            item = " ".join(short_cmd[1:])    #should be the item we're searching for
-            search_room = True
+
+            if "inventory" in short_cmd:
+                    #if want to make multiple names for inventory, do player.inventory.names
+                player.enter_inventory()            #TODO: set to -2
+                player.inventory.list_inventory()   #TODO: create this too
+            
+            else:
+                search_room = True
+                item = " ".join(short_cmd[1:])    #should be the item we're searching for
 
         if search_room:
 
-            result = room.find_match(item)  #TODO: search/print description here or in room class? (return list)
-                             #could also make it return the quadrant if it exists (-1 if not?)
+            result = room.find_match(item)
+                #TODO: search/print description here or in room class? (return list)
+                #could also make it return the quadrant if it exists (-1 if not?)
 
             if result == None:
-                pass    #TODO: could not find it (randint pick)
+                print("Not sure what you're looking at.")
+                #TODO: could not find it (randint pick)
             
             elif type(result) is str:
-                pass    #TODO: there are multiple, please refine (randint pick)
+                print("Multiple objects detected.  Please refine.")
+                #TODO: there are multiple, please refine (randint pick)
             
             else:
                 if type(result) is Box:
                     if any(i in cmd for i in ["in", "inside"]):
-                        '''
-                        if result.locked:
-                            print("Cant' do that Starfox")
-                        else:
-                            result.list_contents()
-                        '''
+                        
+                        
+
                         #TODO: send to open command instead
                         #(will handle locked stuff, just list_contents here)
+                        #make open command auto print what's inside
 
                     else:
                         result.describe()
