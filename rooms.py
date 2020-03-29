@@ -29,6 +29,7 @@ class Room:
     
     def describe(self):
         print(self.description)
+        #TODO: colors
     
     #search quadrants for items/doors, NPCs, boxes, etc.
     #RETURNS item, not for modification (READ ONLY)

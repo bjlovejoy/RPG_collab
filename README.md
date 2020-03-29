@@ -11,3 +11,6 @@ TODO: (implement later, make first word of cmd the command for now)
     look chest
 
 saving games
+
+make door, room, box, etc. inherit base class for things like "describe(self)"
+

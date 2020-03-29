@@ -13,6 +13,9 @@ class Box:
         self.capacity = capacity
         self.material = material
 
+    def describe(self):
+        print(self.description)
+        #TODO: colors
 
     #consider making this the open command
     def list_contents(self):
@@ -90,7 +93,12 @@ class Table:
         self.names = names
         self.items = items
         self.material = material
-    def list_items(self):
+
+    def describe(self):
+        print(self.description)
+        #TODO: colors
+
+    def list_contents(self):
         num = randint(1, 3)
         if num == 1:
             if len(self.items) == 1:

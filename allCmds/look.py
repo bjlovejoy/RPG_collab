@@ -57,41 +57,41 @@ class look(Command):
             else:
                 if type(result) is Box:
                     if any(i in cmd for i in ["in", "inside"]):
-                        
-                        
-
+                        pass
                         #TODO: send to open command instead
-                        #(will handle locked stuff, just list_contents here)
-                        #make open command auto print what's inside
+                        #(will handle locked stuff, make open command auto print what's inside)
+                        
+                        #maybe give description of chest with allude to being open/locked/closed
+                        #(hint the player to use open/unlock cmd)
 
                     else:
                         result.describe()
                 
                 elif type(result) is Table:
                     if "at" in cmd:
-                        pass  #TODO: print table description
+                        result.describe()  #print table description
                     
                     elif any(i in cmd for i in ["on", "ontop", "top"]):
-                        pass  #TODO: print table contents
+                        result.list_contents()  #print table contents
                     
                     else:
-                        pass  #TODO: print both, one after the other
+                        result.describe()
+                        result.list_contents()
+                        #print both, one after the other
                 
                 elif type(result) is Door:
-                    pass  #DO NOT IMPLEMENT in other places - doors controlled from center (okay here since just looking)
+                    result.describe()
 
                 elif type(result) is NPC:
-                    pass  # check if NPC's inventory is open
-                          # check if in battle with NPC (look for weaknesses/hints/fighting style)
+
+                    result.describe()
+
+                    #TODO: check if in battle with NPC (look for weaknesses/hints/fighting style)
+                    #TODO: consider redoing describe to take parameters/lists of descriptions
+                    #look at items the NPC is wearing (maybe handle below in NPC look category)
                 
                 else:
                     print("Should not be able to get here [end of LOOK]")
-
-
-            #"look in chest" - should this be allowed (call open), or require player to open
-            #(special circumstance, similar to look on table)
-            #maybe give description of chest with allude to being open/locked (hint the player to use open/unlock cmd)
-
 
 
 
@@ -106,10 +106,12 @@ class look(Command):
 
 
     def execute_inventory(self, cmd, player, room):
-        pass  #If not found, print note about exiting inventory first
-              #should handle looking at equipped items here (alert player of this)
 
-              #consider suggestsions (look health - "did you mean health cmd?")
+        
+        #If not found, print note about exiting inventory first
+        #should handle looking at equipped items here (alert player of this)
+
+        #consider suggestsions (look health - "did you mean health cmd?")
     
     def execute_box(self, cmd, player, room):
 
@@ -138,7 +140,9 @@ class look(Command):
         pass  #Not implemented yet
     
     def execute_NPC(self, cmd, player, room):
-        pass
+        pass  # check if NPC's inventory is open
 
     def execute_door(self, cmd, player, room):
         pass
+        #TODO: determine if player should be in door quad (consider setting to quad, but if
+        #      the player does not interact with the door on their next turn, reset pos to center)
