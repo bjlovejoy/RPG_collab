@@ -9,42 +9,40 @@ print(Style.RESET_ALL, end="", flush=True)
 '''
 
 class look(Command):
-    def __init__(self, keywords):
-        self.name = keywords[0]
-        self.keywords = keywords
-            
-    def execute_center(self, cmd, player, room):
+    def __init__(self):
+        pass
 
-        short_cmd = self.remove_filler(cmd)
+    def execute_center(self, cmd, player, room):
+        
         search_room = False
 
-        if len(short_cmd) == 1:
+        if len(self.short_cmd) == 1:
             room.describe()
         
-        elif len(short_cmd) == 2:
-            if short_cmd[1] == "inventory":
+        elif len(self.short_cmd) == 2:
+            if self.short_cmd[1] == "inventory":
                     #consider (rather than len):   if "inventory" in cmd
                     #if want to make multiple names for inventory, do player.inventory.names
                 player.enter_inventory()            #TODO: set to -2
                 player.inventory.list_inventory()   #TODO: create this too
             
-            elif short_cmd[1] in ["here", "around", "room"]:
+            elif self.short_cmd[1] in ["here", "around", "room"]:
                 room.describe()
             
             else:
                 search_room = True
-                item = short_cmd[1]
+                item = self.short_cmd[1]
         
         else:
 
-            if "inventory" in short_cmd:
+            if "inventory" in self.short_cmd:
                     #if want to make multiple names for inventory, do player.inventory.names
                 player.enter_inventory()            #TODO: set to -2
                 player.inventory.list_inventory()   #TODO: create this too
             
             else:
                 search_room = True
-                item = " ".join(short_cmd[1:])    #should be the item we're searching for
+                item = " ".join(self.short_cmd[1:])    #should be the item we're searching for
 
         if search_room:
 

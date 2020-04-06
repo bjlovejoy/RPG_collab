@@ -1,9 +1,10 @@
 from commands import Command
 
 class command(Command):
-    def __init__(self, keywords):
-        self.name = keywords[0]
-        self.keywords = keywords
+    def __init__(self):
+        #if wish to pass more, pass everything and call super or Command.__init__(self, vars)
+        #(super is good for single inheritance)
+        #Otherwise, remove __init__ (or keep and add Command.__init__ to everything)
     
     def execute_center(self, cmd, player, room):
         pass

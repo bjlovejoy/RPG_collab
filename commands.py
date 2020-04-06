@@ -1,7 +1,11 @@
 from colorama import Fore, Style
 
 class Command:
-    self.filler_words = ["at", "in", "for", "the", "a", "an", "to", "my", "his", "her"]
+    def __init__(self, keywords):
+        self.name = keywords[0]
+        self.keywords = keywords
+
+        self.filler_words = ["at", "in", "for", "the", "a", "an", "to", "my", "his", "her"]
 
     def remove_filler(self, cmd, exceptions: list=[]]):
 
@@ -12,6 +16,30 @@ class Command:
                 cmd_minimal = cmd_minimal.remove(word)
 
         return cmd_minimal
+
+    def execute_center(self, cmd, player, room):
+        raise NotImplementedError
+
+    def execute_inventory(self, cmd, player, room):
+        raise NotImplementedError
+    
+    def execute_box(self, cmd, player, room):
+        raise NotImplementedError
+    
+    def execute_table(self, cmd, player, room):
+        raise NotImplementedError
+    
+    def execute_desk(self, cmd, player, room):
+        raise NotImplementedError  #Not implemented yet
+
+    def execute_interactable(self, cmd, player, room):
+        raise NotImplementedError  #Not implemented yet
+
+    def execute_NPC(self, cmd, player, room):
+        raise NotImplementedError
+
+    def execute_door(self, cmd, player, room):
+        raise NotImplementedError
 
 #initialize all command objects in a list to be referenced in parseCmd below
 allCmds = [
@@ -47,18 +75,17 @@ def parseCmd(cmd, player, room):
     #then, determine which part of room
     #(if in between center and box, indicate so and allow pass to both)
 
+    determined_cmd.remove_filler(cmd)
 
     if player.roomLoc == -1:
-        determined_cmd.execute_center()
+        determined_cmd.execute_center(determined_cmd, player, room)
     
     elif player.roomLoc == -2:
         determined_cmd.execute_inventory()
     
     else:
         quadType = type(room[player.roomLoc])
-    
-    #New if block in case in between center and box?
-    
+        
         if quadType is Box:
             determined_cmd.execute_box()
 
@@ -66,10 +93,10 @@ def parseCmd(cmd, player, room):
             determined_cmd.execute_table()
 
         elif quadType is Desk:
-            determined_cmd.execute_desk()  #Not implemented yet
+            determined_cmd.execute_desk()           #Not implemented yet
 
         elif quadType is Interactable:
-            determined_cmd.execute_interactable()
+            determined_cmd.execute_interactable()   #Not implemented yet
 
         elif quadType is NPC:
             determined_cmd.execute_NPC()
