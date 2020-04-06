@@ -1,6 +1,12 @@
 from colorama import Fore, Style
 from commands import Command
 
+'''
+Colored text:
+
+print(Fore.RED + "I don't know what you're saying.")
+print(Style.RESET_ALL, end="", flush=True)
+'''
 
 class look(Command):
     def __init__(self, keywords):
