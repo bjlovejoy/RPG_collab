@@ -55,7 +55,7 @@ class Room:
         #for look, this should be handled by look (make a more general function here)
 
 
-    def find_match_quad(self, item):
+    def find_match_quad(self, item):    # may not need -> pass by object-reference
         pass
         #make similar function to above, but return quadrant number
         #(0-7, -1 for no match, so cmd can edit it directly) - consider multiple and no match

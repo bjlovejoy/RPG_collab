@@ -10,31 +10,28 @@ class Command:
         self.cmd = ""
         self.short_cmd = ""
 
-        self.filler_words = ["at", "in", "for", "the", "a", "an", "to", "my", "his", "her"]
+        self.filler_words = ["at", "in", "over", "for", "the", "a", "an", "to", "my", "his", "her"]
 
-    def set_cmd(self, cmd):
-        # save cmd list as member variable (shallow copy)
-        self.cmd = cmd.copy()
+    def set_cmds(self, cmd):
+        self.cmd       = cmd.copy()
+        self.short_cmd = cmd.copy()
 
-    def set_short_cmd(self):
-        self.remove_filler()
-        self.remove_cmd_keyword()
-
-    def remove_filler(self, exceptions: list=[]]):
-
-        self.short_cmd = self.cmd.copy()
-
-        for word in self.filler_words:
-            if word in cmd_minimal and word not in exceptions:
-                cmd_minimal = cmd_minimal.remove(word)
-
-        return cmd_minimal
+        for word in self.short_cmd:
+            if ((word in self.filler_words) or (word in self.keywords)) and word not in exceptions:
+                self.short_cmd.remove(word)
     
-    def remove_cmd_keyword(self):
+    def clear_cmds(self):
+        self.cmd.clear()
+        self.short_cmd.clear()
+            
+    def get_short_cmd(self, exceptions: list=[]):
+        short_cmd = self.cmd.copy()
 
-        for k in self.keywords:
-            if k in self.cmd:
-                self.cmd.remove()
+        for word in short_cmd:
+            if ((word in self.filler_words) or (word in self.keywords)) and word not in exceptions:
+                short_cmd.remove(word)
+        
+        return short_cmd
 
     def execute_center(self, cmd, player, room):
         raise NotImplementedError
@@ -94,8 +91,7 @@ def parseCmd(cmd, player, room):
     #then, determine which part of room
     #(if in between center and box, indicate so and allow pass to both)
 
-    determined_cmd.set_cmd = cmd.copy()
-    determined_cmd.get_short_cmd()
+    determined_cmd.set_cmds(cmd)
 
     if player.roomLoc == -1:
         determined_cmd.execute_center(determined_cmd, player, room)
@@ -127,7 +123,7 @@ def parseCmd(cmd, player, room):
         else
             pass  #empty space (None type or other)
 
-
+    determined_cmd.clear_cmds()
 
 
 
