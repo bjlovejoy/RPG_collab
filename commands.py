@@ -59,7 +59,7 @@ class Command:
 
 #initialize all command objects in a list to be referenced in parseCmd below
 allCmds = [
-    look(["look", "see", "study", "view", "check"]),
+    look(["look", "see", "study", "view", "check", "search"]),
     go(["go", "walk", "run", "travel", "head"]),
     opens(["open", "enter", "unlock"]),
     close(["close", "shut"]),

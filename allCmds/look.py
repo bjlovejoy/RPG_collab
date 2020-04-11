@@ -80,42 +80,44 @@ class look(Command):
                 else:
                     print("Should not be able to get here [end of LOOK]")
 
-
-
-
-
-
-
-
-
-
-
-
-
     def execute_inventory(self, player, room):
 
+        if not self.short_cmd:
+            player.inventory.list_inventory()
         
-        #If not found, print note about exiting inventory first
-        #should handle looking at equipped items here (alert player of this)
+        else:
+            item = " ".join(self.short_cmd)
+            result = player.inventory.search_inventory(item)  #TODO: make this like room.find_match (rename to search?)
 
-        #consider suggestsions (look health - "did you mean health cmd?")
+            if result is None:
+                pass #If not found, print note about exiting inventory first
+                #say, "I don't see that in your inventory"
+
+            elif type(result) is str:
+                pass  #multiple returns
+
+            else:
+                result.describe()
+            
+            #equipped items will be in inventory with tag (ex. shoes (equipped) )
+            #consider suggestsions (look health - "did you mean health cmd?")
     
     def execute_box(self, player, room):
 
-        if len(self.cmd) == 1:
+        if not self.short_cmd:
             room[player.roomLoc].list_contents()
         
-        elif len(self.cmd) == 2:
-            if self.cmd[1] == "inventory":  #replcae this with self.allCmds, but search for all (if in allCmds(find inventory or like)
-                player.inventory.list_inventory()  #TODO: make this function to print contents as list intead of sentence
+        elif "inventory" in self.short_cmd:
+            player.inventory.list_inventory()  #TODO: make this function to print contents as list intead of sentence
+            # when in inventory, if you leave, must return to inside box
 
-            else:
+        else:
 
-            #look inside, look inside box, look in chest, look at [item in chest]
+        #look inside, look inside box, look in chest, look at [item in chest]
 
-            #can also still look "at" chest
+        #can also still look "at" chest
 
-            #search for item, enter inventory, etc.
+        #search for item, enter inventory, etc.
 
     def execute_table(self, player, room):
         pass

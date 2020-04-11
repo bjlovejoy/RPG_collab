@@ -39,6 +39,7 @@ class Player:
         pass
 
 
+#make inventory class (model/inherit from Box, but make it custom)
 
 
 class NPC:
