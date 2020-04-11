@@ -1,21 +1,40 @@
 from colorama import Fore, Style
+from copy import copy       #TODO: need to apply this any where where modifying objects (ex. lists)
+                            # lists have their own copy method
 
 class Command:
     def __init__(self, keywords):
         self.name = keywords[0]
         self.keywords = keywords
 
+        self.cmd = ""
+        self.short_cmd = ""
+
         self.filler_words = ["at", "in", "for", "the", "a", "an", "to", "my", "his", "her"]
 
-    def remove_filler(self, cmd, exceptions: list=[]]):
+    def set_cmd(self, cmd):
+        # save cmd list as member variable (shallow copy)
+        self.cmd = cmd.copy()
 
-        cmd_minimal = cmd
+    def set_short_cmd(self):
+        self.remove_filler()
+        self.remove_cmd_keyword()
+
+    def remove_filler(self, exceptions: list=[]]):
+
+        self.short_cmd = self.cmd.copy()
 
         for word in self.filler_words:
             if word in cmd_minimal and word not in exceptions:
                 cmd_minimal = cmd_minimal.remove(word)
 
         return cmd_minimal
+    
+    def remove_cmd_keyword(self):
+
+        for k in self.keywords:
+            if k in self.cmd:
+                self.cmd.remove()
 
     def execute_center(self, cmd, player, room):
         raise NotImplementedError
@@ -75,7 +94,8 @@ def parseCmd(cmd, player, room):
     #then, determine which part of room
     #(if in between center and box, indicate so and allow pass to both)
 
-    determined_cmd.remove_filler(cmd)
+    determined_cmd.set_cmd = cmd.copy()
+    determined_cmd.get_short_cmd()
 
     if player.roomLoc == -1:
         determined_cmd.execute_center(determined_cmd, player, room)

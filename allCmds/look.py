@@ -9,8 +9,8 @@ print(Style.RESET_ALL, end="", flush=True)
 '''
 
 class look(Command):
-    def __init__(self):
-        pass
+    def __init__(self, keywords):
+        super().__init__(keywords)   #could also use Command. (but need self as arg)
 
     def execute_center(self, cmd, player, room):
         
