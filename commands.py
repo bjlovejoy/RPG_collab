@@ -10,7 +10,7 @@ class Command:
         self.cmd = ""
         self.short_cmd = ""
 
-        self.filler_words = ["at", "in", "over", "for", "the", "a", "an", "to", "my", "his", "her"]
+        self.filler_words = ["at", "in", "inside", "over", "for", "the", "a", "an", "to", "my", "his", "her"]
 
     def set_cmds(self, cmd):
         self.cmd       = cmd.copy()
@@ -66,16 +66,14 @@ allCmds = [
     take(["take", "grab"]),
     put(["put", "place"]),
     use(["use", "interact", "try"]),
-    equip(["equip"]),
-    eat(["eat", "drink"]),
-    touch(["touch", "feel"]),
-    
+    equip(["equip"])
 ]
 
-#attack, fight, build, create, talk to, push, set, lay, place, drop, remove
-#feel, cast, light, poop/pee, curse words, yell, break (strength checks),
+#attack, fight, build, create, talk to (say, yell?), push, set, lay, place, drop, remove
+#cast, light, poop/pee/fart, curse words, break (strength checks),
 #activate, turn on, turn off, flip (switch), leave, rest (sleep), put (into)
-
+    #eat(["eat", "drink"])
+    #touch(["touch", "feel"]) - interact
 
 
 

@@ -22,10 +22,13 @@ class look(Command):
         elif "inventory" in self.short_cmd:
             player.enter_inventory()
             player.inventory.list_contents()
+        
+        elif "stats" in self.short_cmd:
+            player.show_stats()
             
         else:
             search_room = True
-            item = " ".join(self.short_cmd)    #should be the item we're searching for
+            item = " ".join(self.short_cmd)
 
         if search_room:
 

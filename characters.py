@@ -22,6 +22,9 @@ class Player:
         
     def enter_inventory(self):
         self.room_loc = -2
+        
+    def show_stats(self):
+        pass
 
 
 #treat like box, but with custom features (slots hold item, if equipped)
