@@ -20,8 +20,8 @@ class look(Command):
             room.describe()
         
         elif "inventory" in self.short_cmd:
-            player.enter_inventory()            #TODO: set to -2
-            player.inventory.list_inventory()   #TODO: create this too
+            player.enter_inventory()
+            player.inventory.list_contents()
             
         else:
             search_room = True
@@ -30,8 +30,6 @@ class look(Command):
         if search_room:
 
             result = room.find_match(item)
-                #TODO: search/print description here or in room class? (return list)
-                #could also make it return the quadrant if it exists (-1 if not?)
 
             if result == None:
                 print("Not sure what you're looking at.")
@@ -105,7 +103,7 @@ class look(Command):
     def execute_box(self, player, room):
 
         if not self.short_cmd:
-            room[player.roomLoc].list_contents()
+            room[player.room_loc].list_contents()
         
         elif "inventory" in self.short_cmd:
             player.inventory.list_inventory()  #TODO: make this function to print contents as list intead of sentence

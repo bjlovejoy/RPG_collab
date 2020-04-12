@@ -60,7 +60,7 @@ while(playing):
     user_cmd = (input(Fore.YELLOW + ">>> ").lower()).split()   #get rid of extra spaces before/after/between input
     print(Style.RESET_ALL, end="", flush=True)
     
-    playing = parseCmd(user_cmd, player, allRooms[player.mapLoc])
+    playing = parseCmd(user_cmd, player, allRooms[player.map_loc])
 
 
 print("\nUntil next time adventurer...\n")  #Add 2 more \n

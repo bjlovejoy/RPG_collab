@@ -8,38 +8,44 @@ def createPlayer():
 
 
 #make the player also hold the main loc
-#make player have in-between rooms bool
+#make player have in-between rooms bool (or LAST_LOC var)
 
 
 #see notebook for additional player attributes
 class Player:
-    self.inventory = Box()
-    self.roomLoc = -1  #Here, -1 (center tile), -2 (inventory) and 0-7 are quads
-    self.mapLoc = 0    #location of player in level
-
-    self.inBetween = False  #if player is between looking at a table and the center of the room
-                            #if divert from table. automatically "leave" table
+    self.inventory = Inventory()
+    self.room_loc = -1  #Here, -1 (center tile), -2 (inventory) and 0-7 are quads
+    self.map_loc = 0    #location of player in level
     
     def __init__(self, name):
         self.name = name
         
-    def addToInv(self, items):
-        inventory.add_item(items)
-    
-    def remFromInv(self, items):
-        copy_items = inventory.remove_item(items)
-        return copy_items
-    
-    def clearInv(self):
-        inventory.remove_all()
-    
-    def equip:
+    def enter_inventory(self):
+        self.room_loc = -2
+
+
+#treat like box, but with custom features (slots hold item, if equipped)
+class Inventory():
+    def __init__(self):
         pass
-    def unequip:
+
+    def list_contents(self):
+        pass
+    
+    def list_filter(self, filter):  #can pass multiple filters
+        pass                        #(potions, food, rations, weapons, equipped, unequipped)
+    
+    def add_item(self, item):
+        pass
+    
+    def remove_item(self, item):
+        pass
+    
+    def equip_item(self, item):
         pass
 
 
-#make inventory class (model/inherit from Box, but make it custom)
+
 
 
 class NPC:

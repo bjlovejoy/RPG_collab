@@ -93,14 +93,14 @@ def parseCmd(cmd, player, room):
 
     determined_cmd.set_cmds(cmd)
 
-    if player.roomLoc == -1:
+    if player.room_loc == -1:
         determined_cmd.execute_center(determined_cmd, player, room)
     
-    elif player.roomLoc == -2:
+    elif player.room_loc == -2:
         determined_cmd.execute_inventory()
     
     else:
-        quadType = type(room[player.roomLoc])
+        quadType = type(room[player.room_loc])
         
         if quadType is Box:
             determined_cmd.execute_box()
