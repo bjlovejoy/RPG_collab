@@ -32,17 +32,19 @@ class look(Command):
 
         if search_room:
 
-            result = room.find_match(item)
-
-            if result == None:
+            results = room.find_match(item)  #returns list of results                   #TODO: maybe return a list instead (use len for multiple, empty for none)
+                                                                                        #TODO: need to consider looking at item on table
+            if not results:
                 print("Not sure what you're looking at.")
                 #TODO: could not find it (randint pick)
             
-            elif type(result) is str:
-                print("Multiple objects detected.  Please refine.")
-                #TODO: there are multiple, please refine (randint pick)
-            
             else:
+
+                if len(results) > 1:
+                    print("Multiple objects detected.  Please refine.")
+                    #TODO: there are multiple, please refine (randint pick)
+                    #TODO: result = results[chosen_element]   #only allow to choose 1 here
+
                 if type(result) is Box:
                     if any(i in self.cmd for i in ["in", "inside"]):
                         pass
@@ -116,6 +118,8 @@ class look(Command):
         #can also still look "at" chest
 
         #search for item, enter inventory, etc.
+
+        #look all to print specific descriptions for all items?
 
     def execute_table(self, player, room):
         pass

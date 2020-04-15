@@ -34,25 +34,17 @@ class Room:
     #search quadrants for items/doors, NPCs, boxes, etc.
     #RETURNS item, not for modification (READ ONLY)
     #given "name" of item, not type (ex. chest, steel door)
-    def find_match(self, item):
+    def find_match(self, item_name: str):
         
-        num_results = 0
-        result = None
+        result = []
 
         for q in self.quads:
             if q != None:
-                for n in q.names:
-                    if n == item:
-                        result = q
-                        num_results += 1
+                for name in q.names:
+                    if name == item_name:                       #TODO: if table, go through names of items on table (if match, return table)
+                        result.append(q)
         
-        if multiple <= 1:
-            return result       #return object or None
-        
-        else:
-            return "multiple"   #consider replacing with class containing name "multiple"
-
-        #for look, this should be handled by look (make a more general function here)
+        return result       #return list of objects
 
 
     def find_match_quad(self, item):    # may not need -> pass by object-reference

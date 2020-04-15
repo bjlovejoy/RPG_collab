@@ -16,6 +16,7 @@ class Player:
     self.inventory = Inventory()
     self.room_loc = -1  #Here, -1 (center tile), -2 (inventory) and 0-7 are quads
     self.map_loc = 0    #location of player in level
+    self.last_loc = None
     
     def __init__(self, name):
         self.name = name
