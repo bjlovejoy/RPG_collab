@@ -87,7 +87,7 @@ class Box:
 #************************************************************************
 
 
-#includes tables, counters
+#includes tables, counters, bookselves
 class Table:
     def __init__(self, names, items, material="wood"):
         self.names = names

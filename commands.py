@@ -12,26 +12,17 @@ class Command:
 
         self.filler_words = ["at", "in", "inside", "over", "for", "the", "a", "an", "to", "my", "his", "her"]
 
-    def set_cmds(self, cmd):
+    def set_cmds(self, cmd: list, exceptions: list=[]):
         self.cmd       = cmd.copy()
         self.short_cmd = cmd.copy()
 
-        for word in self.short_cmd:
+        for word in self.cmd:
             if ((word in self.filler_words) or (word in self.keywords)) and word not in exceptions:
                 self.short_cmd.remove(word)
     
     def clear_cmds(self):
         self.cmd.clear()
         self.short_cmd.clear()
-            
-    def get_short_cmd(self, exceptions: list=[]):
-        short_cmd = self.cmd.copy()
-
-        for word in short_cmd:
-            if ((word in self.filler_words) or (word in self.keywords)) and word not in exceptions:
-                short_cmd.remove(word)
-        
-        return short_cmd
 
     def execute_center(self, cmd, player, room):
         raise NotImplementedError

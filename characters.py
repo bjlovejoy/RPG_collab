@@ -46,6 +46,9 @@ class Inventory():
     
     def equip_item(self, item):
         pass
+    
+    def find_match(self, item):
+        pass
 
 
 

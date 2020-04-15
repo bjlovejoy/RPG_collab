@@ -16,7 +16,7 @@ class look(Command):
         
         search_room = False
 
-        if not self.short_cmd or any(i in self.short_cmd for i in ["here", "around", "room"]):
+        if not self.short_cmd or any(i in self.short_cmd for i in ["here", "around", "room"]):   #TODO: around is filler?
             room.describe()
         
         elif "inventory" in self.short_cmd:
@@ -48,16 +48,13 @@ class look(Command):
                         pass
                         #TODO: send to open command instead
                         #(will handle locked stuff, make open command auto print what's inside)
-                        
-                        #maybe give description of chest with allude to being open/locked/closed
-                        #(hint the player to use open/unlock cmd)
 
                     else:
                         result.describe()
                 
                 elif type(result) is Table:
                     if "at" in self.cmd:
-                        result.describe()  #print table description
+                        result.describe()  #print table description                  #TODO: think bookshelf, always print everything or tell user to look closer
                     
                     elif any(i in self.cmd for i in ["on", "ontop", "top"]):
                         result.list_contents()  #print table contents
@@ -88,14 +85,14 @@ class look(Command):
         
         else:
             item = " ".join(self.short_cmd)
-            result = player.inventory.search_inventory(item)  #TODO: make this like room.find_match (rename to search?)
+            result = player.inventory.find_match(item)  #TODO: make this like room.find_match
 
             if result is None:
                 pass #If not found, print note about exiting inventory first
                 #say, "I don't see that in your inventory"
 
             elif type(result) is str:
-                pass  #multiple returns
+                pass  #multiple returns, list all and ask to clarify which one (1,2,3), all(a) or quit(q) - (implement here, consider for above multiple too)
 
             else:
                 result.describe()
